@@ -1,0 +1,39 @@
+<html ng-app="app">
+<head>
+<title>AngularJS</title>
+<script	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.js"></script>
+<script	src="js/app.js"></script>
+<script	src="js/CervejaController.js"></script>
+</head>
+<body>
+	<div ng-controller="CervejaController">
+
+		<h2>Novo</h2>
+		<form name="form">
+			<input type="text" placeholder="Cerveja" ng-model="cerveja.nome"> 
+			<input type="text" placeholder="Cervejaria" ng-model="cerveja.cervejaria">
+			<button ng-click="adicionar()">Adicionar</button>
+		</form>
+	
+		<h2>Busca</h2>	
+		Cerveja: <input ng-model="search.nome">
+		Cervejaria: <input ng-model="search.cervejaria">
+		<table>
+			<thead>
+				<tr>
+					<th><a href="">Cerveja</a></th>
+					<th>Cervejaria</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="cerveja in cervejas | filter:search | orderBy:'nome'">
+					<td>{{ cerveja.nome | uppercase }}</td>
+					<td>{{ cerveja.cervejaria }}</td>
+					<td><button ng-click="remover(cerveja)">Remover</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
